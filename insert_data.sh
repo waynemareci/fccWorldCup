@@ -17,18 +17,18 @@ do
   then
     # insert winning team into teams table
     INSERT_WINNER_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
-    if [[ $INSERT_WINNER_RESULT == "INSERT 0 1" ]]
-    then
-      echo Inserted winner into teams: $WINNER
+    #if [[ $INSERT_WINNER_RESULT == "INSERT 0 1" ]]
+    #then
+    #  echo Inserted winner into teams: $WINNER
       WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
-    fi
+    #fi
     # insert opponent (losing) team into teams table
     INSERT_OPPONENT_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
-    if [[ $INSERT_OPPONENT_RESULT == "INSERT 0 1" ]]
-    then
-      echo Inserted opponent into teams: $OPPONENT
-      OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
-    fi
+    #if [[ $INSERT_OPPONENT_RESULT == "INSERT 0 1" ]]
+    #then
+    #  echo Inserted opponent into teams: $OPPONENT
+     OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
+    #fi
     # insert game data into games table
     INSERT_GAMEDATA_RESULT=$($PSQL "INSERT INTO games(round,year,winner_goals,opponent_goals,winner_id,opponent_id) VALUES('$ROUND',$YEAR,$WINNER_GOALS,$OPPONENT_GOALS,$WINNER_ID,$OPPONENT_ID)") 
   fi
